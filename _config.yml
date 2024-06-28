@@ -28,10 +28,9 @@ url: "https://mikael-andersson91.github.io/" # the base hostname & protocol for 
 github_username:  mikael-andersson91
 
 # Build settings
-# theme: Modernist
-remote_theme: pages-themes/modernist@v0.2.0
+theme: Modernist
 plugins:
-  - jekyll-remote-theme
+  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
