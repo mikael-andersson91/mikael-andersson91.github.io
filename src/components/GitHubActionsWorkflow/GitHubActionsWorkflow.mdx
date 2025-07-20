@@ -1,0 +1,30 @@
+import WorkflowInput from '@site/src/components/GitHubActionsWorkflow/WorkflowInput'
+import WorkflowOutput from '@site/src/components/GitHubActionsWorkflow/WorkflowOutput'
+import WorkflowSecrets from '@site/src/components/GitHubActionsWorkflow/WorkflowSecrets'
+import WorkflowCodeBlock from '@site/src/components/GitHubActionsWorkflow/WorkflowCodeBlock'
+import WorkflowJobsList from '@site/src/components/GitHubActionsWorkflow/WorkflowJobs'
+
+## Workflow details
+
+### Inputs
+
+<WorkflowInput workflow={props.workflow} />
+
+### Secrets
+
+<WorkflowSecrets workflow={props.workflow} />
+
+### Outputs
+
+<WorkflowOutput workflow={props.workflow} />
+
+### Jobs
+
+<WorkflowJobsList workflow={props.workflow} />
+
+### Workflow file
+
+<details>
+  <summary>Click to view workflow file</summary>
+  <WorkflowCodeBlock workflow={props.workflow} />
+</details>

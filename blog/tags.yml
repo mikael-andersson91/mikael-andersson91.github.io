@@ -1,0 +1,19 @@
+rpa:
+  label: RPA
+  permalink: /rpa
+  description: RPA related posts
+
+uipath:
+  label: UiPath
+  permalink: /uipath
+  description: UiPath related posts
+
+devops:
+  label: DevOps
+  permalink: /devops
+  description: DevOps related posts
+
+github-actions:
+  label: GitHub Actions
+  permalink: /github-actions
+  description: GitHub Actions related posts
