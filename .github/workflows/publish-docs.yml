@@ -26,7 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: my-website
         shell: bash
 
     steps:
@@ -38,7 +37,6 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
-          cache-dependency-path: ${{ github.workspace }}
 
       - name: npm init
         run: npm init
@@ -52,7 +50,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: my-website/build
+          path: build
 
   # Deployment job
   deploy:
