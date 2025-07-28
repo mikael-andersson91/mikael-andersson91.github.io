@@ -4,3 +4,18 @@
 [submodule "UiPath-Test"]
 	path = UiPath-Test
 	url = https://github.com/Mikael-RnD/UiPath-Test.git
+[submodule "UiPath-Pack"]
+	path = UiPath-Pack
+	url = https://github.com/Mikael-RnD/UiPath-Pack.git
+[submodule "UiPath-Analyze"]
+	path = UiPath-Analyze
+	url = https://github.com/Mikael-RnD/UiPath-Analyze.git
+[submodule "UiPath-Deploy"]
+	path = UiPath-Deploy
+	url = https://github.com/Mikael-RnD/UiPath-Deploy.git
+[submodule "setup-uipath"]
+	path = setup-uipath
+	url = https://github.com/Mikael-RnD/setup-uipath.git
+[submodule "setup-uipathcli"]
+	path = setup-uipathcli
+	url = https://github.com/mikael-andersson91/setup-uipathcli.git
