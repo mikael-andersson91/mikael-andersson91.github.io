@@ -1,3 +1,6 @@
 [submodule "rpa-devops"]
 	path = rpa-devops
 	url = https://github.com/mikael-andersson91/rpa-devops.git
+[submodule "UiPath-Test"]
+	path = UiPath-Test
+	url = https://github.com/Mikael-RnD/UiPath-Test.git
