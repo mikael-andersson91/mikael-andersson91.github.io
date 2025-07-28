@@ -60,8 +60,6 @@ jobs:
           token: ${{ secrets.PAT }}
           title: "chore: update submodules"
           body: |
-            chore: update submodules
-            
             ${{ steps.pr-body.outputs.body }}
           branch: update-submodules
           commit-message: |
