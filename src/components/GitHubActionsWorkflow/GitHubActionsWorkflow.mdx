@@ -8,19 +8,30 @@ import WorkflowJobsList from '@site/src/components/GitHubActionsWorkflow/Workflo
 
 ### Inputs
 
+<details>
+  <summary>Click to view all inputs to the workflow</summary>
 <WorkflowInput workflow={props.workflow} />
+</details>
 
 ### Secrets
-
+<details>
+  <summary>Click to view all secrets used by the workflow</summary>
 <WorkflowSecrets workflow={props.workflow} />
+</details>
 
 ### Outputs
 
+<details>
+  <summary>Click to view all outputs from the workflow</summary>
 <WorkflowOutput workflow={props.workflow} />
+</details>
 
 ### Jobs
 
+<details>
+  <summary>Click to view all jobs in the workflow</summary>
 <WorkflowJobsList workflow={props.workflow} />
+</details>
 
 ### Workflow file
 
