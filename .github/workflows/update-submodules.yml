@@ -1,0 +1,77 @@
+name: Update Submodules
+
+on:
+  workflow_dispatch:
+  schedule:
+      - cron: '0 8,20 * * *'
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Update Submodules
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
+          token: ${{ secrets.PAT }}
+
+      - name: Update Submodules
+        id: update-submodules
+        run: | 
+            git submodule update --recursive --remote
+            diff=$(git diff --name-only)
+            {
+                echo 'DIFF<<EOF'
+                echo $diff
+                echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
+
+      - name: Create PR Body
+        id: pr-body
+        run: |
+            readarray -t updates <<< "${{ steps.update-submodules.outputs.diff }}"
+            {
+                echo 'body<<EOF'
+                printf " - %s\n" "${updates[@]}"
+                echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
+
+      - name: Create Pull Request
+        id: create-pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PAT }}
+          title: "chore: update submodules"
+          body: |
+            chore: update submodules
+            
+            ${{ steps.pr-body.outputs.body }}
+          branch: update-submodules
+          commit-message: |
+            chore: update submodules
+            
+            ${{ steps.pr-body.outputs.body }}
+
+      - name: Enable Auto-Merge
+        if: ${{ steps.create-pr.outputs.pull-request-operation == 'created' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        run: |
+          gh pr merge ${{ steps.create-pr.outputs.pull-request-number }} --auto --squash
