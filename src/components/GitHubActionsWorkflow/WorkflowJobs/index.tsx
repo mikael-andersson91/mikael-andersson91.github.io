@@ -22,6 +22,9 @@ interface Workflow {
 
 interface WorkflowJobProps {
   workflow: string
+  repository?: string
+  owner?: string
+  version?: string
 }
 
 const WorkflowJobsList: React.FC<WorkflowJobProps> = (props) => {
@@ -29,7 +32,12 @@ const WorkflowJobsList: React.FC<WorkflowJobProps> = (props) => {
 
   useEffect(() => {
     const loadWorkflow = async () => {
-      const wf = require('raw-loader!@site/.github/workflows/' + props.workflow).default
+      const repository = props.repository;
+      const owner = props.owner || 'mikael-andersson91';
+      const wfPath = (repository?.trim().length > 0) 
+        ? `@site/${repository}/.github/workflows/${props.workflow}` 
+        : `@site/.github/workflows/${props.workflow}`;
+      const wf = require('yaml-loader!' + wfPath).default
       const parsedWorkflow: Workflow = yaml.parse(wf)
       const jobsArray = Object.keys(parsedWorkflow.jobs).map((jobName) => ({
         ...parsedWorkflow.jobs[jobName],

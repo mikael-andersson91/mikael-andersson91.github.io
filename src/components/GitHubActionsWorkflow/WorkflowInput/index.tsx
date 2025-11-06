@@ -12,11 +12,29 @@ interface WorkflowInput {
 // Define the type for the props
 interface WorkflowInputs {
   workflow: string
+  repository?: string
+  owner?: string
+  version?: string
 }
 
 const WorkflowInputList: React.FC<WorkflowInputs> = (props) => {
-  const wf = require('yaml-loader!@site/.github/workflows/' + props.workflow)
-  const workflowCall = wf?.default?.on?.workflow_call
+  const repository = props.repository;
+  const owner = props.owner || 'mikael-andersson91';
+  const version = props.version || 'main'; // Default version, can be changed if needed
+  
+  console.log('Repository:', repository); // Debug log
+  console.log('Workflow:', props.workflow); // Debug log
+  
+  // For now, let's just try the simple @site path and handle errors gracefully
+  let wf, workflowCall;
+  try {
+    wf = require(`yaml-loader!@site/.github/workflows/${props.workflow}`)
+    workflowCall = wf?.default?.on?.workflow_call
+  } catch (error) {
+    console.error('Error loading workflow file:', error)
+    return <p>Error: Could not load workflow file. Please check that the file exists and is accessible.</p>
+  }
+
   const inputs: { [key: string]: WorkflowInput } = workflowCall?.inputs
 
   if (inputs == null || inputs == undefined) {

@@ -7,10 +7,19 @@ interface WorkflowSecret {
 
 interface WorkflowSecrets {
   workflow: string
+  repository?: string
+  owner?: string
+  version?: string
 }
 
 const WorkflowSecretList: React.FC<WorkflowSecrets> = (props) => {
-  const wf = require('yaml-loader!@site/.github/workflows/' + props.workflow)
+  const repository = props.repository;
+  const owner = props.owner || 'mikael-andersson91';
+  const version = props.version || 'main';
+  const wfPath = (repository?.trim().length > 0) 
+    ? `@site/${repository}/.github/workflows/${props.workflow}` 
+    : `@site/.github/workflows/${props.workflow}`;  // Using yaml-loader to load the workflow file
+  const wf = require('yaml-loader!' + wfPath)
   const workflowCall = wf?.default?.on?.workflow_call
   const secrets: { [key: string]: WorkflowSecret } | undefined = workflowCall?.secrets
 

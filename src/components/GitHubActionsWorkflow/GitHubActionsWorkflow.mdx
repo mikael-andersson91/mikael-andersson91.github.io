@@ -12,32 +12,32 @@ This section provides detailed information extracted from the workflow file, inc
 
 <details>
   <summary>Click to view all inputs to the workflow</summary>
-<WorkflowInput workflow={props.workflow} />
+<WorkflowInput workflow={props.workflow} repository={props.repository} owner={props.owner} version={props.version} />
 </details>
 
 ### Secrets
 <details>
   <summary>Click to view all secrets used by the workflow</summary>
-<WorkflowSecrets workflow={props.workflow} />
+<WorkflowSecrets workflow={props.workflow} repository={props.repository} owner={props.owner} version={props.version} />
 </details>
 
 ### Outputs
 
 <details>
   <summary>Click to view all outputs from the workflow</summary>
-<WorkflowOutput workflow={props.workflow} />
+<WorkflowOutput workflow={props.workflow} repository={props.repository} owner={props.owner} version={props.version} />
 </details>
 
 ### Jobs
 
 <details>
   <summary>Click to view all jobs in the workflow</summary>
-<WorkflowJobsList workflow={props.workflow} />
+<WorkflowJobsList workflow={props.workflow} repository={props.repository} owner={props.owner} version={props.version} />
 </details>
 
 ### Workflow file
 
 <details>
   <summary>Click to view workflow file</summary>
-  <WorkflowCodeBlock workflow={props.workflow} repository={props.repository} />
+  <WorkflowCodeBlock workflow={props.workflow} repository={props.repository} owner={props.owner} version={props.version} />
 </details>

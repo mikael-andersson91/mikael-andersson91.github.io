@@ -8,11 +8,19 @@ interface WorkflowOutput {
 
 interface WorkflowOutputs {
   workflow: string
+  repository?: string
+  owner?: string
+  version?: string
 }
 
 const WorkflowOutputList: React.FC<WorkflowOutputs> = (props) => {
-  const wf = require('yaml-loader!@site/.github/workflows/' + props.workflow)
-  const workflowCall = wf?.default?.on?.workflow_call
+  const repository = props.repository;
+  const owner = props.owner || 'mikael-andersson91';
+  const version = props.version || 'main';
+  const wfPath = (repository?.trim().length > 0) 
+    ? `@site/${repository}/.github/workflows/${props.workflow}` 
+    : `@site/.github/workflows/${props.workflow}`;  const wf = require('yaml-loader!' + wfPath).default
+  const workflowCall = wf?.on?.workflow_call
   const outputs: { [key: string]: WorkflowOutput } | undefined = workflowCall?.outputs
 
   if (outputs == undefined) {
