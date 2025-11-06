@@ -1,0 +1,11 @@
+---
+workflow: 'uipath-analyze.yml'
+title: UiPath Analyze
+description: Runs workflow analysis on UiPath projects and comments results to pull requests.
+repository: 'rpa-devops'
+sidebar_position: 2
+---
+
+import GitHubActionsWorkflow from '@site/src/components/GitHubActionsWorkflow/GitHubActionsWorkflow.mdx'
+
+<GitHubActionsWorkflow workflow={frontMatter.workflow} repository={frontMatter.repository} />
